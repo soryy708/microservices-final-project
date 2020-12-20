@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const config = require('../config.json');
 
 const app = express();
 
@@ -16,5 +17,9 @@ app.get('/', (req, res) => {
     const result = Number(req.query.a) - Number(req.query.b);
     res.status(200).send(`${result}`);
 });
+
+const listener = app.listen(process.env.NODE_ENV === 'test' ? 0 : config.microservices.sub.port, () =>
+    console.log(`Now listening on port ${listener.address().port}`)
+);
 
 module.exports = app;
