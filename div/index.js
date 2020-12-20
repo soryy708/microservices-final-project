@@ -13,5 +13,12 @@ app.get('/', (req, res) => {
         res.status(400).send();
         return;
     }
-    res.status(200).send(Number(req.query.a) / Number(req.query.b));
+    if (Number(req.query.b) === 0) {
+        res.status(200).send('NaN');
+        return;
+    }
+    const result = Number(req.query.a) / Number(req.query.b);
+    res.status(200).send(`${result}`);
 });
+
+module.exports = app;

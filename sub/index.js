@@ -13,5 +13,8 @@ app.get('/', (req, res) => {
         res.status(400).send();
         return;
     }
-    res.status(200).send(Number(req.query.a) - Number(req.query.b));
+    const result = Number(req.query.a) - Number(req.query.b);
+    res.status(200).send(`${result}`);
 });
+
+module.exports = app;
