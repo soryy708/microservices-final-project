@@ -1,9 +1,10 @@
 import json
+from os import path
 import pytest
 from flask import Flask, request
 
 def getConfig():
-    file= open('../../config.json', 'r')
+    file= open(path.join(path.dirname(__file__), '..', '..', 'config.json'), 'r')
     data = file.read()
     return json.loads(data)
 
