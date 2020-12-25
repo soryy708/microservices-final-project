@@ -3,7 +3,7 @@ import pytest
 from flask import Flask, request
 
 def getConfig():
-    file= open('../../config.json', 'r')
+    file= open('./config.json', 'r')
     data = file.read()
     return json.loads(data)
 
