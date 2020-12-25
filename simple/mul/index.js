@@ -1,28 +1,24 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const config = require('../config.json');
+const config = require('../../config.json');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.get('/', (req, res) => {
+app.get('/', async(req, res) => {
     if (req.query.a === undefined || req.query.b === undefined ||
         req.query.a === null || req.query.b === null ||
         isNaN(Number(req.query.a)) || isNaN(Number(req.query.b))) {
         res.status(400).send();
         return;
     }
-    if (Number(req.query.b) === 0) {
-        res.status(200).send('NaN');
-        return;
-    }
-    const result = Number(req.query.a) / Number(req.query.b);
+    const result = Number(req.query.a) * Number(req.query.b);
     res.status(200).send(`${result}`);
 });
 
-const listener = app.listen(process.env.NODE_ENV === 'test' ? 0 : config.microservices.div.port, () =>
+const listener = app.listen(process.env.NODE_ENV === 'test' ? 0 : config.microservices.mul.port, () =>
     console.log(`Now listening on port ${listener.address().port}`)
 );
 
