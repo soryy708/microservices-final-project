@@ -26,13 +26,19 @@ def subApi(a, b):
     return apiCall('sub', a, b)
 
 def mulApi(a, b):
-    return apiCall('mul', a, b)
+    try:
+        return apiCall('mul', a, b)
+    except:
+        return apiCall('mul-bk', a, b)
 
 def divApi(a, b):
     return apiCall('div', a, b)
 
 def powApi(a, b):
-    return apiCall('pow', a, b)
+    try:
+        return apiCall('pow', a, b)
+    except:
+        return apiCall('pow-bk', a, b)
 
 def modApi(a, b):
     return apiCall('mod', a, b)
