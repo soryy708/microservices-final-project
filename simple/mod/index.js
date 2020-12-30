@@ -5,12 +5,12 @@ const config = require('../../config.json');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
     const isInteger = num => num === (Math.floor(num * 10) / 10);
     if (req.query.a === undefined || req.query.b === undefined ||
-        req.query.a === null || req.query.b === null ||
+        req.query.a === null || req.query.b === null || Number(req.query.b) <= 0 ||
         isNaN(Number(req.query.a)) || isNaN(Number(req.query.b)) ||
         !isInteger(Number(req.query.a) || !isInteger(Number(req.query.b)))) {
         res.status(400).send();
